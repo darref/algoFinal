@@ -1,4 +1,4 @@
-import { bonjour, elevesTab, isPair, minTab, minTwoNumbers, modifierNotesDesEleves, moyenneAvantDernier, nbElevesPlusDixMoy, showAllnames, showFirstnames, showMattersnames, square } from "./exos";
+import { bonjour, elevesTab, impactRugby, isPair, minTab, minTwoNumbers, modifierNotesDesEleves, moyenneAvantDernier, nbElevesPlusDixMoy, rugby2, showAllnames, showFirstnames, showMattersnames, square } from "./exos";
 
 
 bonjour("jordan");
@@ -22,5 +22,10 @@ console.log(moyenneAvantDernier(elevesTab));
 console.log(modifierNotesDesEleves(elevesTab));
 ///////////////////////////////
 console.log(nbElevesPlusDixMoy(elevesTab));
+///////////////////////////////
+console.log(impactRugby());
+///////////////////////////////
+rugby2();
+
 
  

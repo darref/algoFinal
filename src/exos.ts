@@ -1,5 +1,4 @@
-import { error } from "console";
-import { access } from "fs";
+
 
 export function bonjour(name:string) : void {
     console.log("Bonjour " , name , " !");
@@ -189,3 +188,76 @@ Centimes.reduce((acc,curr)=>{if(acc > curr)
 const totalSum = prix.reduce((acc,curr)=>{
     return acc + curr;
 })
+
+//rugby
+const line1 = ["110:37", "100:83", "120:91"];
+const line2 = ["99:25", "86:56", "108:47", "100:42"];
+const line3 = ["83:95"];
+
+export function impactRugby():number {
+
+
+    const forceLine1: number = line1.reduce((acc, curr) => {
+        const [weight, force] = curr.split(":").map(Number);
+        return Math.floor(acc + force * 1.5);
+    }, 0);
+
+    const forceLine2: number = line2.reduce((acc, curr) => {
+        const [weight, force] = curr.split(":").map(Number);
+        return Math.floor(acc + force);
+    }, 0);
+
+    const forceLine3: number = line3.reduce((acc, curr) => {
+        const [weight, force] = curr.split(":").map(Number);
+        return Math.floor(acc + force * 0.75);
+    }, 0);
+
+    const poidsLine1: number = line1.reduce((acc, curr) => {
+        const [weight, force] = curr.split(":").map(Number);
+        return acc + weight;
+    }, 0);
+
+    const poidsLine2: number = line2.reduce((acc, curr) => {
+        const [weight, force] = curr.split(":").map(Number);
+        return acc + weight;
+    }, 0);
+
+    const poidsLine3: number = line3.reduce((acc, curr) => {
+        const [weight, force] = curr.split(":").map(Number);
+        return acc + weight;
+    }, 0);
+
+    const impact: number = forceLine1 * poidsLine1 + forceLine2 * poidsLine2 + forceLine3 * poidsLine3;
+
+    return impact;
+}
+
+export function rugby2(){
+    const actions = "PPPPDPPTTPPDETPTEPEDTTTDPEDTDDT";
+
+    let score = 0;
+    let isPreviousActionE = false; // Variable pour suivre si l'action précédente était un essai
+
+    for (let i = 0; i < actions.length; i++) {
+        const action = actions[i];
+        
+        // Si l'action est un essai
+        if (action === "E") {
+            score += 5;
+            isPreviousActionE = true; // Mettre à jour la variable pour indiquer qu'il y a eu un essai
+        } 
+        // Si l'action est une transformation et la précédente était un essai
+        else if (action === "T" && isPreviousActionE) {
+            score += 2;
+            isPreviousActionE = false; // Réinitialiser la variable pour indiquer que la transformation a été utilisée
+        } 
+        // Si l'action est une pénalité ou un drop
+        else if (action === "P" || action === "D") {
+            score += 3;
+            isPreviousActionE = false; // Réinitialiser la variable, car une pénalité ou un drop ne suit pas un essai
+        }
+    }
+
+    console.log("Score total de l'équipe :", score);
+
+}
